@@ -1,6 +1,7 @@
 const express=require('express');
 const https=require('https');
 const request=require('request');
+const bodyParser = require('body-parser')
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 // const { response, response } = require('express');
 // const { exit } = require('process');
@@ -8,11 +9,11 @@ const port=3000
 const app=express()
 const listId = "37efce0f25";
 
-app.use(express.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:true}))
 
 
 mailchimp.setConfig({
-  apiKey: "94c69d85c48569134e1f3b91b7799588-us11",
+  apiKey: "415bf863dbbda9144879ea1e1ee1ca06-us11",
   server: "us11",
 });
 
@@ -52,10 +53,11 @@ app.post('/message', (req, res)=>{
         PASSWORD: subscribingUser.pass
       }
     });
+    
     res.sendFile(__dirname + '/success.html')
-  
+    
   }
-  
+  // run()
   run().catch(e => res.sendFile(__dirname + "/failure.html"));
     
 
